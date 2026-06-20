@@ -66,7 +66,7 @@ void MaxHeap::shiftDown(int i) {
     // in the same iteration before any swap can happen to make sure we are swapping the right child
     int swap_id = i;
 
-    // we first check if the left child is greater than the parent
+    // we first check if the left child's index is withing bounds, and then if it is greater than the parent
     if (leftChild(i) <= heap_size && max_heap[i] < max_heap[leftChild(i)]) {
         swap_id = leftChild(i);
     }
