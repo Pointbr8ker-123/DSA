@@ -13,7 +13,10 @@ struct TreeNode {
 };
 
 // Optimal solution:
-// Time Complexity: O(k)
+// Time Complexity: O(h + k); where h is the height of the (left sub-) tree since we first descend to
+// the minimum element (in the left subtree), before climbing up k times
+// In worst-case, it could be O(n).
+
 // Space Complexity: O(1)
 
 // Algorithm:
