@@ -39,7 +39,7 @@ int countComponents(int n, vector<vector<int>>& edges) {
 
     int components = 0;
 
-    // iterate through 1 - n-1 (i.e every possible value in the graph) and
+    // iterate from 0 - n-1 (i.e every possible value in the graph) and
     // check for connections with the help of the "visited" array above
     for (int i = 0; i < n; i++) {
         if (!visited[i]) {
