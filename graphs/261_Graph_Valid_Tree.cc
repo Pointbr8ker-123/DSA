@@ -2,15 +2,15 @@
 using namespace std;
 
 
-bool dfs(int node, int parent, vector<vector<int>>& al, vector<bool>& visited) {
+bool dfs(int node, int parent, vector<vector<int>>& al, vector<char>& visited) {
     // if we've encountered this node before, then there is a cycle and
     // the graph is an invalid tree
     if (visited[node]) return false;
 
     // set the node to visited
-    visited[node] = true;
+    visited[node] = 1;
 
-    for (int neighbour : al[node]) {
+    for (const int neighbour : al[node]) {
         // This helps prevent the connection to the parent as a cycle
         // therefore flagging a cycle only when it exists between two
         // nodes connected to the same "parent" and connected to each
@@ -28,23 +28,10 @@ bool graph_valid_tree(int n, vector<vector<int>>& edges) {
     // Build adjacency list
     vector<vector<int>> al(n);
     for (const auto& edge : edges) {
-        int nodeA = edge[0];
-        int nodeB = edge[1];
-
-        al[nodeA].push_back(nodeB);
-        al[nodeB].push_back(nodeA);
+        al[edge[0]].push_back(edge[1]);
+        al[edge[1]].push_back(edge[0]);
     }
 
-    vector<bool> visited(n, false);
-    
-    if (!dfs(0, -1, al, visited)) return false;
-
-    // Check every node to make sure they were all visited. If
-    // there is any unvisited node, then it is disconnected and
-    // therefore makes the graph an invalid tree
-    for (bool node : visited) {
-        if (!node) return false;
-    }
-
-    return true;
+    vector<char> visited(n, 0);
+    return dfs(0, -1, al, visited);
 }
