@@ -23,4 +23,4 @@ class UnionFind:
             self.parent[root_y] = root_x
         else:
             self.parent[root_y] = root_x
-            self.parent[root_x] += 1
+            self.rank[root_x] += 1
