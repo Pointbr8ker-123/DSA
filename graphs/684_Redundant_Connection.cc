@@ -3,18 +3,26 @@ using namespace std;
 
 class Solution {
 private:
-    vector<int> parent, rank;
+    // Using Union Find (Disjoint Set Union) Approach
+    vector<int> parent;
+    vector<int> rank;
 
+    // Returns the "parent" of the node
     int find(const int x) {
         if (parent[x] != x) {
-            parent[x] = find(parent[x]);
+            parent[x] = find(parent[x]); // Path Compression
         }
         return parent[x];
     }
 
+    // Links two nodes together; uses "rank" to decide the "parent" 
+    // and the "child"
     void unite(const int a, const int b) {
-        int root_a = find(a), root_b = find(b);
+        int root_a = find(a);
+        int root_b = find(b);
+
         if (root_a == root_b) return;
+
         if (rank[root_a] > rank[root_b]) {
             parent[root_b] = root_a;
         } else if (rank[root_a] < rank[root_b]) {
