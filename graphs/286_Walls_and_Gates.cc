@@ -16,9 +16,12 @@ vector<vector<int>> map_gate_distances(vector<vector<int>>& dungeon_map) {
 
     vector<pair<int, int>> dirs = {{0,1}, {0,-1}, {1,0}, {-1,0}};
 
+    // This tracks how far we are from from the gates "0"
     int dist = 0;
+
     while(!q.empty()) {
         int n = q.size();
+        // initially starts with tracking the gates and finding out 
         for (int i = 0; i < n; i++) {
             auto[r,c] = q.front(); q.pop();
             for (auto& [dr,dc] : dirs) {
