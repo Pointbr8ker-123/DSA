@@ -10,9 +10,14 @@ public:
 
         for (int r = 0; r < rows; r++) {
             for (int c = 0; c < cols; c++) {
-                if (board[r][c] == 'O') {
-                    q.push({r,c});
-                }
+                // Push into the queue every occurance of "O" that is situated at
+                // the boundary
+                if (r == 0 || c == 0 || r == rows-1 || c == cols-1) 
+                    if (board[r][c] == 'O') {
+                        q.push({r,c});
+                        // Mark any "O" found on the boundary for later purposes
+                        board[r][c] = '$';
+                    }
             }
         }
 
@@ -22,14 +27,31 @@ public:
             int n = q.size();
             for (int i = 0; i< n; i++) {
                 auto [r,c] = q.front(); q.pop();
-                int sur = 0;
                 for (auto& [dr,dc] : dirs) {
                     int nr = dr+r, nc = dc+c;
-                    if ((nr >= 0 && nr < rows) && (nc >= 0 && nc < cols)) {
-                        sur++;
+                    // Check if there are any "0"s connected to the "O" on the boundary
+                    // If there is/are any, then that cell/cells cannot be "surrounded"
+                    // and will therefore be marked as "unsurroundable" with the "$" sign
+                    if ((nr >= 0 && nr < rows) && 
+                        (nc >= 0 && nc < cols) &&
+                        board[nr][nc] == 'O') {
+                            q.push({nr,nc});
+                            board[nr][nc] = '$';
                     }
                 }
-                if (sur == 4) board[r][c] = 'X';
+            }
+        }
+
+        // Traverse the grid and check out for unsurroundable cells marked '$'
+        // if we find any "O" that isnt marked '$', then that cells can be
+        // surrounded and thus marked 'X'... else we'd unmark it back to an 'O'
+        for (int r = 0; r < rows; r++) {
+            for (int c = 0; c < cols; c++) {
+                if (board[r][c] == '$') {
+                    board[r][c] = 'O';
+                } else if (board[r][c] == 'O') {
+                    board[r][c] = 'X';
+                };
             }
         }
     }
