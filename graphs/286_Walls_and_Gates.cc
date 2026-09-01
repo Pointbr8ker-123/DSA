@@ -1,6 +1,15 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// HINT: Multi-source BFS starting from all gates
+
+// "Multi-source BFS means: use a queue, but the BFS should 
+// start from every gate at the same time and stretch outward. 
+// We achieve this by first pushing all gates into the queue 
+// using a for-loop. Then we run BFS normally. As we explore, 
+// any new empty rooms we encounter get added to the queue. We 
+// keep going until we've visited every reachable cell in the grid."
+
 vector<vector<int>> map_gate_distances(vector<vector<int>>& dungeon_map) {
     int rows = dungeon_map.size();
     int cols = dungeon_map[0].size();
