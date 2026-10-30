@@ -1,10 +1,11 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// DFS SOLUTION
 class Solution {
 public:
     int findCircleNum(vector<vector<int>>& isConnected) {
-        // Create a hashmap to store the nodes we have visited
+        // Create a hashset to store the nodes we have visited
         unordered_set<int> visited;
 
         // This is used to track the number of "provinces"
