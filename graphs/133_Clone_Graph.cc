@@ -25,7 +25,7 @@ public:
 class Solution {
 private:
     // Create a hashmap to track visited and unvisited nodes efficiently
-    // in order to avoid infinite looping since its and undirected graph
+    // in order to avoid infinite looping since its an undirected graph
     unordered_map<Node*, Node*> visited;
 
     // Use DFS alongside the adjancency list of the graph to recursively 
@@ -42,7 +42,7 @@ private:
 
         // Go through the neighbours of the current node being evaluated
         // and recursively clone and update the hashmap
-        for (auto& n : node->neighbors) {
+        for (auto &n : node->neighbors) {
             // if this neighbour hasnt been visited, we use DFS to visit
             // it & its neighbours recursively while updating the hashmap
             if (visited.find(n) == visited.end()) {

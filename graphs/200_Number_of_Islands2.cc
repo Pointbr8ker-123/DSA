@@ -7,11 +7,11 @@ using namespace std;
 class Solution {
 public:
     int numIslands(vector<vector<char>>& grid) {
+        if (grid.empty()) return 0;
+
         int rows = grid.size();
         int cols = grid[0].size();
         int islands = 0;
-
-        if (grid.empty()) return 0;
 
         for (int r = 0; r < rows; r++) {
             for (int c = 0; c < cols; c++) {
