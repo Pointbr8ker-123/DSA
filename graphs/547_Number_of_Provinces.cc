@@ -38,3 +38,32 @@ private:
         }
     }
 };
+
+
+
+// ================================= MORE COMPACT DFS SOLUTION ==================================
+class Solution {
+private:
+    void dfs(int city, int n, vector<int> &visited, vector<vector<int>>& isConnected) {
+        visited[city] = 1;
+        for (int neigh = 0; neigh < n; neigh++) {
+            if (isConnected[city][neigh] == 1 && !visited[neigh]) {
+                dfs(neigh, n, visited, isConnected);
+            }
+        }
+    }
+public:
+    int findCircleNum(vector<vector<int>>& isConnected) {
+        int n = isConnected.size();
+        vector<int> visited(n, 0);
+        int provinces = 0;
+
+        for (int i = 0; i < n; i++) {
+            if (!visited[i]) {
+                dfs(i, n, visited, isConnected);
+                provinces++;
+            }
+        }
+        return provinces;
+    }
+};
