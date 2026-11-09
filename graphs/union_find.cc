@@ -30,13 +30,13 @@ public:
 
         if (root_x == root_y) return;
         
-        if (rank[root_x] < rank[root_y]) {
+        if (rank[root_y] < rank[root_x]) {
+            parent[root_y] = root_y;
+        } else if (rank[root_y] > rank[root_x]) {
             parent[root_x] = root_y;
-        } else if (rank[root_x] > rank[root_y]) {
-            parent[root_y] = root_x;
         } else {
-            parent[root_x] = root_y;
-            rank[root_y]++;
+            parent[root_y] = root_x;
+            rank[root_x]++;
         }
     }
 };
