@@ -7,7 +7,7 @@ using namespace std;
 // start from every gate at the same time and stretch outward. 
 // We achieve this by first pushing all gates into the queue 
 // using a for-loop. Then we run BFS normally. As we explore, 
-// any new empty rooms we encounter get added to the queue. We 
+// any new empty room we encounter gets added to the queue. We 
 // keep going until we've visited every reachable cell in the grid."
 
 vector<vector<int>> map_gate_distances(vector<vector<int>>& dungeon_map) {
