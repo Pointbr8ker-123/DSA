@@ -32,8 +32,7 @@ public:
         // Use BFS to perform topological sort on the graph starting from the vertices with
         // the least number of incoming connections. In this particular case, we'll use "adj_size"
         // to track how many vertices were processed. If there are unreachable vertices, there
-        // must be a cycle and therefore the numbers will reflect in "adj_size" not being equal
-        // to n
+        // must be a cycle present and this will reflect in "adj_size" not being equal to n.
         while(!q.empty()) {
             int top = q.front(); q.pop();
             adj_size++;
